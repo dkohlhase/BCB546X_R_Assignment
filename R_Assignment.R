@@ -8,7 +8,6 @@ library(gtools)
 if (!require("reshape2")) install.packages("reshape2")
 library(reshape2)
 
-
 SNP <- read_tsv("https://raw.githubusercontent.com/dkohlhase/BCB546X_Unix_Assignment/master/snp_position.txt")
 geno <- read_tsv("https://raw.githubusercontent.com/dkohlhase/BCB546X_Unix_Assignment/master/fang_et_al_genotypes.txt")
 
@@ -57,16 +56,16 @@ mmaize <- mmaize[mixedorder(mmaize$Position),]
 #head(mmaize[,1:5], n = 10)   #Progress check
 
 # Create new files for each 'Chromosome'
-maize_chrom01_increase <- filter(mmaize, Chromosome == "1")
-maize_chrom02_increase <- filter(mmaize, Chromosome == "2")
-maize_chrom03_increase <- filter(mmaize, Chromosome == "3")
-maize_chrom04_increase <- filter(mmaize, Chromosome == "4")
-maize_chrom05_increase <- filter(mmaize, Chromosome == "5")
-maize_chrom06_increase <- filter(mmaize, Chromosome == "6")
-maize_chrom07_increase <- filter(mmaize, Chromosome == "7")
-maize_chrom08_increase <- filter(mmaize, Chromosome == "8")
-maize_chrom09_increase <- filter(mmaize, Chromosome == "9")
-maize_chrom10_increase <- filter(mmaize, Chromosome == "10")
+maize_chrom01_increase <- filter(mmaize, Chromosome == "1") %>% write_csv(path = "maize_chrom01_increase.csv")
+maize_chrom02_increase <- filter(mmaize, Chromosome == "2") %>% write_csv(path = "maize_chrom02_increase.csv")
+maize_chrom03_increase <- filter(mmaize, Chromosome == "3") %>% write_csv(path = "maize_chrom03_increase.csv")
+maize_chrom04_increase <- filter(mmaize, Chromosome == "4") %>% write_csv(path = "maize_chrom04_increase.csv")
+maize_chrom05_increase <- filter(mmaize, Chromosome == "5") %>% write_csv(path = "maize_chrom05_increase.csv")
+maize_chrom06_increase <- filter(mmaize, Chromosome == "6") %>% write_csv(path = "maize_chrom06_increase.csv")
+maize_chrom07_increase <- filter(mmaize, Chromosome == "7") %>% write_csv(path = "maize_chrom07_increase.csv")
+maize_chrom08_increase <- filter(mmaize, Chromosome == "8") %>% write_csv(path = "maize_chrom08_increase.csv")
+maize_chrom09_increase <- filter(mmaize, Chromosome == "9") %>% write_csv(path = "maize_chrom09_increase.csv")
+maize_chrom10_increase <- filter(mmaize, Chromosome == "10") %>% write_csv(path = "maize_chrom10_increase.csv")
 
 # Sort by decreasing 'Position'
 mmaize <- mmaize[mixedorder(mmaize$Position, decreasing = T),]
@@ -77,16 +76,16 @@ mmaize[mmaize == "?/?"] <- "-/-"
 mmaize <- as.data.frame(mmaize)
 
 # Create new files for each 'Chromosome'
-maize_chrom01_decrease <- filter(mmaize, Chromosome == "1")
-maize_chrom02_decrease <- filter(mmaize, Chromosome == "2")
-maize_chrom03_decrease <- filter(mmaize, Chromosome == "3")
-maize_chrom04_decrease <- filter(mmaize, Chromosome == "4")
-maize_chrom05_decrease <- filter(mmaize, Chromosome == "5")
-maize_chrom06_decrease <- filter(mmaize, Chromosome == "6")
-maize_chrom07_decrease <- filter(mmaize, Chromosome == "7")
-maize_chrom08_decrease <- filter(mmaize, Chromosome == "8")
-maize_chrom09_decrease <- filter(mmaize, Chromosome == "9")
-maize_chrom10_decrease <- filter(mmaize, Chromosome == "10")
+maize_chrom01_decrease <- filter(mmaize, Chromosome == "1") %>% write_csv(path = "maize_chrom01_decrease.csv")
+maize_chrom02_decrease <- filter(mmaize, Chromosome == "2") %>% write_csv(path = "maize_chrom02_decrease.csv")
+maize_chrom03_decrease <- filter(mmaize, Chromosome == "3") %>% write_csv(path = "maize_chrom03_decrease.csv")
+maize_chrom04_decrease <- filter(mmaize, Chromosome == "4") %>% write_csv(path = "maize_chrom04_decrease.csv")
+maize_chrom05_decrease <- filter(mmaize, Chromosome == "5") %>% write_csv(path = "maize_chrom05_decrease.csv")
+maize_chrom06_decrease <- filter(mmaize, Chromosome == "6") %>% write_csv(path = "maize_chrom06_decrease.csv")
+maize_chrom07_decrease <- filter(mmaize, Chromosome == "7") %>% write_csv(path = "maize_chrom07_decrease.csv")
+maize_chrom08_decrease <- filter(mmaize, Chromosome == "8") %>% write_csv(path = "maize_chrom08_decrease.csv")
+maize_chrom09_decrease <- filter(mmaize, Chromosome == "9") %>% write_csv(path = "maize_chrom09_decrease.csv")
+maize_chrom10_decrease <- filter(mmaize, Chromosome == "10") %>% write_csv(path = "maize_chrom10_decrease.csv")
 
   # Teosinte --------------------------------------------------------------------------------------------------------------------------------
 # Parse the teosinte information from whole genotype file
@@ -113,16 +112,16 @@ mteosinte <- mteosinte[mixedorder(mteosinte$Position),]
 #head(mteosinte[,1:5], n = 10)  #Progress check
 
 # Create new files for each 'Chromosome'
-teosinte_chrom01_increase <- filter(mteosinte, Chromosome == "1")
-teosinte_chrom02_increase <- filter(mteosinte, Chromosome == "2")
-teosinte_chrom03_increase <- filter(mteosinte, Chromosome == "3")
-teosinte_chrom04_increase <- filter(mteosinte, Chromosome == "4")
-teosinte_chrom05_increase <- filter(mteosinte, Chromosome == "5")
-teosinte_chrom06_increase <- filter(mteosinte, Chromosome == "6")
-teosinte_chrom07_increase <- filter(mteosinte, Chromosome == "7")
-teosinte_chrom08_increase <- filter(mteosinte, Chromosome == "8")
-teosinte_chrom09_increase <- filter(mteosinte, Chromosome == "9")
-teosinte_chrom10_increase <- filter(mteosinte, Chromosome == "10")
+teosinte_chrom01_increase <- filter(mteosinte, Chromosome == "1") %>% write_csv(path = "teosinte_chrom01_increase.csv")
+teosinte_chrom02_increase <- filter(mteosinte, Chromosome == "2") %>% write_csv(path = "teosinte_chrom02_increase.csv")
+teosinte_chrom03_increase <- filter(mteosinte, Chromosome == "3") %>% write_csv(path = "teosinte_chrom03_increase.csv")
+teosinte_chrom04_increase <- filter(mteosinte, Chromosome == "4") %>% write_csv(path = "teosinte_chrom04_increase.csv")
+teosinte_chrom05_increase <- filter(mteosinte, Chromosome == "5") %>% write_csv(path = "teosinte_chrom05_increase.csv")
+teosinte_chrom06_increase <- filter(mteosinte, Chromosome == "6") %>% write_csv(path = "teosinte_chrom06_increase.csv")
+teosinte_chrom07_increase <- filter(mteosinte, Chromosome == "7") %>% write_csv(path = "teosinte_chrom07_increase.csv")
+teosinte_chrom08_increase <- filter(mteosinte, Chromosome == "8") %>% write_csv(path = "teosinte_chrom08_increase.csv")
+teosinte_chrom09_increase <- filter(mteosinte, Chromosome == "9") %>% write_csv(path = "teosinte_chrom09_increase.csv")
+teosinte_chrom10_increase <- filter(mteosinte, Chromosome == "10") %>% write_csv(path = "teosinte_chrom10_increase.csv")
 
 # Sort by decreasing 'Position'
 mteosinte <- mteosinte[mixedorder(mteosinte$Position, decreasing = T),]
@@ -133,16 +132,16 @@ mteosinte[mteosinte == "?/?"] <- "-/-"
 mteosinte <- as.data.frame(mteosinte)
 
 # Create new files for each 'Chromosome'
-teosinte_chrom01_decrease <- filter(mteosinte, Chromosome == "1")
-teosinte_chrom02_decrease <- filter(mteosinte, Chromosome == "2")
-teosinte_chrom03_decrease <- filter(mteosinte, Chromosome == "3")
-teosinte_chrom04_decrease <- filter(mteosinte, Chromosome == "4")
-teosinte_chrom05_decrease <- filter(mteosinte, Chromosome == "5")
-teosinte_chrom06_decrease <- filter(mteosinte, Chromosome == "6")
-teosinte_chrom07_decrease <- filter(mteosinte, Chromosome == "7")
-teosinte_chrom08_decrease <- filter(mteosinte, Chromosome == "8")
-teosinte_chrom09_decrease <- filter(mteosinte, Chromosome == "9")
-teosinte_chrom10_decrease <- filter(mteosinte, Chromosome == "10")
+teosinte_chrom01_decrease <- filter(mteosinte, Chromosome == "1") %>% write_csv(path = "teosinte_chrom01_decrease.csv")
+teosinte_chrom02_decrease <- filter(mteosinte, Chromosome == "2") %>% write_csv(path = "teosinte_chrom02_decrease.csv")
+teosinte_chrom03_decrease <- filter(mteosinte, Chromosome == "3") %>% write_csv(path = "teosinte_chrom03_decrease.csv")
+teosinte_chrom04_decrease <- filter(mteosinte, Chromosome == "4") %>% write_csv(path = "teosinte_chrom04_decrease.csv")
+teosinte_chrom05_decrease <- filter(mteosinte, Chromosome == "5") %>% write_csv(path = "teosinte_chrom05_decrease.csv")
+teosinte_chrom06_decrease <- filter(mteosinte, Chromosome == "6") %>% write_csv(path = "teosinte_chrom06_decrease.csv")
+teosinte_chrom07_decrease <- filter(mteosinte, Chromosome == "7") %>% write_csv(path = "teosinte_chrom07_decrease.csv")
+teosinte_chrom08_decrease <- filter(mteosinte, Chromosome == "8") %>% write_csv(path = "teosinte_chrom08_decrease.csv")
+teosinte_chrom09_decrease <- filter(mteosinte, Chromosome == "9") %>% write_csv(path = "teosinte_chrom09_decrease.csv")
+teosinte_chrom10_decrease <- filter(mteosinte, Chromosome == "10") %>% write_csv(path = "teosinte_chrom10_decrease.csv")
 
   # Zygosity --------------------------------------------------------------------------------------------------------------------------------
 # Create a new column indicating whether SNP is homozygous
@@ -179,7 +178,9 @@ ggplot(data = mgeno) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 20),
     axis.text = element_text(size = 15),
-    axis.title = element_text(size = 15))
+    axis.title = element_text(size = 15)
+    ) 
+ggsave(filename = "SNPs per chromosome.png", device = "png")
 
 # SNPs per Group
 ggplot(data = geno) + 
@@ -188,8 +189,10 @@ ggplot(data = geno) +
   ylab("Number of SNPs") +
   theme(
     plot.title = element_text(hjust = 0.5, size = 15),
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 12))
+    axis.text = element_text(size = 9),
+    axis.title = element_text(size = 12)
+    )
+ggsave(filename = "SNPs per Group.png", device = "png")
 
 # Total SNP Zygosity
 ggplot(data = zygotes) +
@@ -202,6 +205,7 @@ ggplot(data = zygotes) +
     axis.title = element_text(size = 12),
     legend.position = "none"
     )
+ggsave(filename = "Total SNP Zygosity.png", device = "png")
 
 # SNP Zygosity by Sample_ID
 ggplot(data = zygotes) +
@@ -213,6 +217,7 @@ ggplot(data = zygotes) +
     axis.text.x = element_blank(),
     axis.ticks.x = element_blank()
     )
+ggsave(filename = "SNP Zygosity by Ordered Sample_ID.png", device = "png")
 
 # SNP Zygosity by Group
 ggplot(data = zygotes) +
@@ -223,7 +228,9 @@ ggplot(data = zygotes) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 15),
     axis.text = element_text(size = 12),
-    axis.title = element_text(size = 12))
+    axis.title = element_text(size = 12)
+    ) 
+ggsave(filename = "SNP Zygosity by Group.png", device = "png")
 
 # Position Adjustment for SNP Zygosity by Group
 ggplot(data = zygotes) + 
@@ -234,7 +241,9 @@ ggplot(data = zygotes) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 15),
     axis.text = element_text(size = 12),
-    axis.title = element_text(size = 12))
+    axis.title = element_text(size = 12)
+    )
+ggsave(filename = "Position Adjustment for SNP Zygosity by Group.png", device = "png")
 
 # Additional visualization
 # Distribution of SNPs across chromosomes
@@ -248,10 +257,11 @@ df3 <- subset(df2, Chromosome != "multiple")
 ggplot(data = df3) +
   theme(
     plot.title = element_text(hjust = 0.5),
-    axis.text.x = element_text(angle = 315, hjust = -0.02)
+    axis.text.x = element_text(angle = 315, hjust = -0.02, size = 5)
   ) +
   facet_wrap(~Chromosome, scales = "free", nrow = 2) +
   geom_bar(mapping = aes(x = Dist_Bin), stat = "count") +
   ggtitle(label = "Distribution of SNPs across chromosomes") +
   xlab(label = "Position Binned") +
   ylab(label = "Number of SNPs")
+ggsave(filename = "Distribution of SNPs across chromosomes.png", device = "png")
