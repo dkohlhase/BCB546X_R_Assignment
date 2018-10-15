@@ -46,13 +46,13 @@ mgeno <- merge(sSNP,tgeno, by.x="SNP_ID", by.y="SNP_ID", all = TRUE)
 ### Maize
 Parse the maize information from whole genotype file
 Maize = ZMMIL, ZMMLR, and ZMMMR
-```{}
+```{r}
 maize <- filter(geno, Group == "ZMMIL" | Group == "ZMMLR" | Group == "ZMMMR")
 maize_names <- maize[,c(1:3)]
 maize_names$full <- apply(maize_names, 1, paste, collapse = ", ") 
 ```
 Transpose maize files
-```{}
+```{r}
 tmaize <- as.data.frame(t(maize[,c(-1:-3)]))
 colnames(tmaize) <- maize_names$full
 rnames <- as.data.frame(rownames(tmaize))
@@ -62,15 +62,15 @@ head(tmaize[,1:3])  #Progress check
 colnames(tmaize)[1] <- "SNP_ID"
 ```
 Join SNP and geno
-```{}
+```{r}
 mmaize <- inner_join(x = sSNP, y = tmaize, by = "SNP_ID")
 ```
 Sort by increasing 'Position'
-```{}
+```{r}
 mmaize <- mmaize[mixedorder(mmaize$Position),]
 ```
 Create new files for each 'Chromosome'
-```{}
+```{r}
 maize_chrom01_increase <- filter(mmaize, Chromosome == "1") %>% write_csv(path = "maize_chrom01_increase.csv")
 maize_chrom02_increase <- filter(mmaize, Chromosome == "2") %>% write_csv(path = "maize_chrom02_increase.csv")
 maize_chrom03_increase <- filter(mmaize, Chromosome == "3") %>% write_csv(path = "maize_chrom03_increase.csv")
@@ -83,17 +83,17 @@ maize_chrom09_increase <- filter(mmaize, Chromosome == "9") %>% write_csv(path =
 maize_chrom10_increase <- filter(mmaize, Chromosome == "10") %>% write_csv(path = "maize_chrom10_increase.csv")
 ```
 Sort by decreasing 'Position'
-```{}
+```{r}
 mmaize <- mmaize[mixedorder(mmaize$Position, decreasing = T),]
 ```
 Replace ?/? with -/-
-```{}
+```{r}
 mmaize <- apply(X = mmaize, MARGIN = 2, FUN = as.character)
 mmaize[mmaize == "?/?"] <- "-/-"
 mmaize <- as.data.frame(mmaize)
 ```
 Create new files for each 'Chromosome'
-```{}
+```{r}
 maize_chrom01_decrease <- filter(mmaize, Chromosome == "1") %>% write_csv(path = "maize_chrom01_decrease.csv")
 maize_chrom02_decrease <- filter(mmaize, Chromosome == "2") %>% write_csv(path = "maize_chrom02_decrease.csv")
 maize_chrom03_decrease <- filter(mmaize, Chromosome == "3") %>% write_csv(path = "maize_chrom03_decrease.csv")
@@ -108,13 +108,13 @@ maize_chrom10_decrease <- filter(mmaize, Chromosome == "10") %>% write_csv(path 
 ### Teosinte
 Parse the teosinte information from whole genotype file
 Teosinte = ZMPBA, ZMPIL, and ZMPJA
-```{}
+```{r}
 teosinte <- filter(geno, Group == "ZMPBA" | Group == "ZMPIL" | Group == "ZMPJA")
 teosinte_names <- teosinte[,c(1:3)]
 teosinte_names$full <- apply(teosinte_names, 1, paste, collapse = ", ") 
 ```
 Transpose teosinte files
-```{}
+```{r}
 tteosinte <- as.data.frame(t(teosinte[,c(-1:-3)]))
 colnames(tteosinte) <- teosinte_names$full
 rnames <- as.data.frame(rownames(tteosinte))
@@ -123,15 +123,15 @@ tteosinte <- cbind(rnames,tteosinte)
 colnames(tteosinte)[1] <- "SNP_ID"
 ```
 Join SNP and geno
-```{}
+```{r}
 mteosinte <- inner_join(x = sSNP, y = tteosinte, by = "SNP_ID")
 ```
 Sort by increasing 'Position'
-```{}
+```{r}
 mteosinte <- mteosinte[mixedorder(mteosinte$Position),]
 ```
 Create new files for each 'Chromosome'
-```{}
+```{r}
 teosinte_chrom01_increase <- filter(mteosinte, Chromosome == "1") %>% write_csv(path = "teosinte_chrom01_increase.csv")
 teosinte_chrom02_increase <- filter(mteosinte, Chromosome == "2") %>% write_csv(path = "teosinte_chrom02_increase.csv")
 teosinte_chrom03_increase <- filter(mteosinte, Chromosome == "3") %>% write_csv(path = "teosinte_chrom03_increase.csv")
@@ -144,17 +144,17 @@ teosinte_chrom09_increase <- filter(mteosinte, Chromosome == "9") %>% write_csv(
 teosinte_chrom10_increase <- filter(mteosinte, Chromosome == "10") %>% write_csv(path = "teosinte_chrom10_increase.csv")
 ```
 Sort by decreasing 'Position'
-```{}
+```{r}
 mteosinte <- mteosinte[mixedorder(mteosinte$Position, decreasing = T),]
 ```
 Replace ?/? with -/-
-```{}
+```{r}
 mteosinte <- apply(X = mteosinte, MARGIN = 2, FUN = as.character)
 mteosinte[mteosinte == "?/?"] <- "-/-"
 mteosinte <- as.data.frame(mteosinte)
 ```
 Create new files for each 'Chromosome'
-```{}
+```{r}
 teosinte_chrom01_decrease <- filter(mteosinte, Chromosome == "1") %>% write_csv(path = "teosinte_chrom01_decrease.csv")
 teosinte_chrom02_decrease <- filter(mteosinte, Chromosome == "2") %>% write_csv(path = "teosinte_chrom02_decrease.csv")
 teosinte_chrom03_decrease <- filter(mteosinte, Chromosome == "3") %>% write_csv(path = "teosinte_chrom03_decrease.csv")
@@ -168,21 +168,21 @@ teosinte_chrom10_decrease <- filter(mteosinte, Chromosome == "10") %>% write_csv
 ```
 ### Zygosity
 Melt the original genotype file
-```{}
+```{r}
 zygotes_long <- filter(geno, Group == "ZMMIL" | Group == "ZMMLR" | Group == "ZMMMR" | Group == "ZMPBA" | Group == "ZMPIL" | Group == "ZMPJA")
 zygotes <- melt(zygotes_long, measure.vars = colnames(geno)[4:986])
 colnames(zygotes)[4:5] <- c("SNP_ID", "Homozygous")
 colnames(zygotes)
 ```
 Change all homozygous SNPs to TRUE
-```{}
+```{r}
 zygotes[zygotes == "A/A"] <- TRUE
 zygotes[zygotes == "C/C"] <- TRUE
 zygotes[zygotes == "G/G"] <- TRUE
 zygotes[zygotes == "T/T"] <- TRUE
 ```
 Change all heterozygotes to FALSE
-```{}
+```{r}
 zygotes[zygotes == "A/C"] <- FALSE
 zygotes[zygotes == "A/G"] <- FALSE
 zygotes[zygotes == "A/T"] <- FALSE
@@ -191,16 +191,16 @@ zygotes[zygotes == "C/T"] <- FALSE
 zygotes[zygotes == "G/T"] <- FALSE
 ```
 Change all missing values to NA
-```{}
+```{r}
 zygotes[zygotes == "?/?"] <- NA
 ```
 Sort the dataframe using "Group" and "Species_ID"
-```{}
+```{r}
 zygotes <- arrange(zygotes, Sample_ID, Group)
 ```
 # Data Visualization
 ### SNPs per chromosome
-```{}
+```{r}
 ggplot(data = mgeno) +
   geom_bar(mapping = aes(x = Chromosome)) +
   scale_x_discrete(limits=c(1:10, "unknown", "multiple")) +
@@ -215,7 +215,7 @@ ggplot(data = mgeno) +
 ggsave(filename = "SNPs per chromosome.png", device = "png")
 ```
 ### SNPs per Group
-```{}
+```{r}
 ggplot(data = geno) + 
   geom_bar(mapping = aes(x = Group)) +
   ggtitle(label = "SNPs per Group") +
@@ -228,7 +228,7 @@ ggplot(data = geno) +
 ggsave(filename = "SNPs per Group.png", device = "png")
 ```
 ### Total SNP Zygosity
-```{}
+```{r}
 ggplot(data = zygotes) +
   geom_bar(mapping = aes(x = Homozygous, fill = Homozygous), stat = "count") +
   ggtitle(label = "Total SNP Zygosity") +
@@ -242,7 +242,7 @@ ggplot(data = zygotes) +
 ggsave(filename = "Total SNP Zygosity.png", device = "png")
 ```
 ## SNP Zygosity by Sample_ID
-```{}
+```{r}
 ggplot(data = zygotes) +
   geom_bar(mapping = aes(x = Sample_ID, fill = Homozygous), stat = "count") +
   ggtitle(label = "SNP Zygosity by Ordered Sample_ID") +
@@ -255,7 +255,7 @@ ggplot(data = zygotes) +
 ggsave(filename = "SNP Zygosity by Ordered Sample_ID.png", device = "png")
 ```
 ### SNP Zygosity by Group
-```{}
+```{r}
 ggplot(data = zygotes) +
   geom_bar(mapping = aes(x = Group, fill = Homozygous), stat = "count") +
   ggtitle(label = "SNP Zygosity by Group") +
@@ -269,7 +269,7 @@ ggplot(data = zygotes) +
 ggsave(filename = "SNP Zygosity by Group.png", device = "png")
 ```
 ### Position Adjustment for SNP Zygosity by Group
-```{}
+```{r}
 ggplot(data = zygotes) + 
   geom_bar(mapping = aes(x = Group, fill = Homozygous), position = "fill") +
   ggtitle(label = "Position Adjustment for SNP Zygosity by Group") +
@@ -284,7 +284,7 @@ ggsave(filename = "Position Adjustment for SNP Zygosity by Group.png", device = 
 ```
 ### Additional visualization
 ### Distribution of SNPs across chromosomes
-```{}
+```{r}
 df <- mgeno %>% 
     mutate(Dist_Bin = cut(as.numeric(Position), breaks = 20))
 
