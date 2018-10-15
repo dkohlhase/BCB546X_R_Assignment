@@ -8,8 +8,8 @@ library(gtools)
 if (!require("reshape2")) install.packages("reshape2")
 library(reshape2)
 
-SNP <- read_tsv("https://raw.githubusercontent.com/dkohlhase/BCB546X_Unix_Assignment/master/snp_position.txt")
-geno <- read_tsv("https://raw.githubusercontent.com/dkohlhase/BCB546X_Unix_Assignment/master/fang_et_al_genotypes.txt")
+SNP <- read_tsv("https://raw.githubusercontent.com/dkohlhase/BCB546X_R_Assignment/master/snp_position.txt")
+geno <- read_tsv("https://raw.githubusercontent.com/dkohlhase/BCB546X_R_Assignment/master/fang_et_al_genotypes.txt")
 
 # Data Inspection --------------------------------------------------------------------------------------------------------------------------------
 SNP
